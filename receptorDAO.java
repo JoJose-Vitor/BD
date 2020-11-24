@@ -69,9 +69,10 @@ String email = res.getString("email");
 String cnpj = res.getString("cnpj");
 String telefone = res.getString("telefone");
 String endereco = res.getString("endereco");
-String banco = res.getString("banco");
+String banconome = res.getString("banconome");
+String banconum = res.getString("banconum");
         
-receptor objeto = new receptor(receptorID, nome, email, cnpj, telefone, endereco, banco);
+receptor objeto = new receptor(receptorID, nome, email, cnpj, telefone, endereco, banconome, banconum);
 MinhaLista.add(objeto);
 }
 stmt.close();
@@ -81,7 +82,7 @@ return MinhaLista;
 }
 
 public boolean Insertreceptor(receptor objeto) {
-String sql = "INSERT INTO receptor(receptorID, nome, email, cnpj, telefone, endereco, banco) VALUES(?,?,?,?,?,?,?)";
+String sql = "INSERT INTO receptor(receptorID, nome, email, cnpj, telefone, endereco, banco, banconome, banconum) VALUES(?,?,?,?,?,?,?,?)";
 try {
 PreparedStatement stmt = this.getConexao().prepareStatement(sql);
 stmt.setInt(1, objeto.getreceptorID());
@@ -90,8 +91,9 @@ stmt.setString(3, objeto.getemail());
 stmt.setString(4, objeto.getcnpj());
 stmt.setString(5, objeto.gettelefone());
 stmt.setString(6, objeto.getendereco());
-stmt.setString(7, objeto.getbanco());
-        
+stmt.setString(7, objeto.getbanconome());
+stmt.setString(8, objeto.getbanconum());
+    
 stmt.execute();
 stmt.close();
 return true;
@@ -114,7 +116,7 @@ public boolean Deletereceptor(receptor objeto) {
 }
 
 public boolean Updatereceptor(receptor objeto) {
-String sql = "UPDATE doardb_receptor set nome = ?, email = ?, cnpj = ?, telefone = ?, endereco = ?, banco = ? WHERE receptorID = ?";
+String sql = "UPDATE doardb_receptor set nome = ?, email = ?, cnpj = ?, telefone = ?, endereco = ?, banconome = ?, banconum = ? WHERE receptorID = ?";
 try {
 PreparedStatement stmt = this.getConexao().prepareStatement(sql);
 
@@ -124,7 +126,8 @@ stmt.setString(3, objeto.getemail());
 stmt.setString(4, objeto.getcnpj());
 stmt.setString(5, objeto.gettelefone());
 stmt.setString(6, objeto.getendereco());
-stmt.setString(7, objeto.getbanco());
+stmt.setString(7, objeto.getbanconome());
+stmt.setString(8, objeto.getbanconum());
         
 stmt.execute();
 stmt.close();
@@ -150,7 +153,8 @@ objeto.setString(3, res.getemail());
 objeto.setString(4, res.getcnpj());
 objeto.setString(5, res.gettelefone());
 objeto.setString(6, res.getendereco());
-objeto.setString(7, res.getbanco());
+objeto.setString(7, res.getbanconome());
+objeto.setString(8, res.getbanconum());
        
 stmt.close();
 
