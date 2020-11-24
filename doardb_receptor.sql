@@ -5,5 +5,6 @@ CREATE TABLE `receptor` (
   `cnpj` varchar(16) DEFAULT NULL,
   `telefone` varchar(15) DEFAULT NULL,
   `endereco` varchar(80) DEFAULT NULL,
+  `banco` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`receptorID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
