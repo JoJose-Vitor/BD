@@ -69,8 +69,9 @@ String email = res.getString("email");
 String cnpj = res.getString("cnpj");
 String telefone = res.getString("telefone");
 String endereco = res.getString("endereco");
+String banco = res.getString("banco");
         
-receptor objeto = new receptor(receptorID, nome, email, cnpj, telefone, endereco);
+receptor objeto = new receptor(receptorID, nome, email, cnpj, telefone, endereco, banco);
 MinhaLista.add(objeto);
 }
 stmt.close();
@@ -80,7 +81,7 @@ return MinhaLista;
 }
 
 public boolean Insertreceptor(receptor objeto) {
-String sql = "INSERT INTO receptor(receptorID, nome, email, cnpj, telefone, endereco) VALUES(?,?,?,?,?,?)";
+String sql = "INSERT INTO receptor(receptorID, nome, email, cnpj, telefone, endereco, banco) VALUES(?,?,?,?,?,?,?)";
 try {
 PreparedStatement stmt = this.getConexao().prepareStatement(sql);
 stmt.setInt(1, objeto.getreceptorID());
@@ -89,6 +90,7 @@ stmt.setString(3, objeto.getemail());
 stmt.setString(4, objeto.getcnpj());
 stmt.setString(5, objeto.gettelefone());
 stmt.setString(6, objeto.getendereco());
+stmt.setString(7, objeto.getbanco());
         
 stmt.execute();
 stmt.close();
@@ -112,7 +114,7 @@ public boolean Deletereceptor(receptor objeto) {
 }
 
 public boolean Updatereceptor(receptor objeto) {
-String sql = "UPDATE doardb_receptor set nome = ?, email = ?, cnpj = ?, telefone = ?, endereco = ? WHERE receptorID = ?";
+String sql = "UPDATE doardb_receptor set nome = ?, email = ?, cnpj = ?, telefone = ?, endereco = ?, banco = ? WHERE receptorID = ?";
 try {
 PreparedStatement stmt = this.getConexao().prepareStatement(sql);
 
@@ -122,6 +124,7 @@ stmt.setString(3, objeto.getemail());
 stmt.setString(4, objeto.getcnpj());
 stmt.setString(5, objeto.gettelefone());
 stmt.setString(6, objeto.getendereco());
+stmt.setString(7, objeto.getbanco());
         
 stmt.execute();
 stmt.close();
@@ -147,6 +150,7 @@ objeto.setString(3, res.getemail());
 objeto.setString(4, res.getcnpj());
 objeto.setString(5, res.gettelefone());
 objeto.setString(6, res.getendereco());
+objeto.setString(7, res.getbanco());
        
 stmt.close();
 
